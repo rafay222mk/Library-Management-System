@@ -26,15 +26,15 @@
     
     <% if current_user.role == "admin" || current_user.role == "libraian" %>
       <% if @student.role == "student" %>
-      <button style="text-align: left"><%= link_to 'Back' , users_path(show: 'student_list') , class: 'css_class', style: 'color:yellow;'%></button>  
+      <button style="text-align: left"><%= link_to 'Back' , users_path(show: 'student_list') , class: 'css_class', style: 'color: blue; font-size: 25px;'%></button>  
       <% elsif @student.role == "libraian" %>
       <%# debugger %>
-      <button style="text-align: left"><%= link_to 'Back' , users_path(show: 'librarian_list') , class: 'css_class', style: 'color:yellow;'%></button>
+      <button style="text-align: left"><%= link_to 'Back' , users_path(show: 'librarian_list') , class: 'css_class', style: 'color: blue; font-size: 25px;'%></button>
        <% else %>
-      <button style="text-align: left"><%= link_to 'Back' , welcome_home_path , class: 'css_class', style: 'color:yellow;'%></button>
+      <button style="text-align: left"><%= link_to 'Back' , welcome_home_path , class: 'css_class', style: 'color: blue; font-size: 25px;'%></button>
       <% end %>
       <% else %>
-      <button style="text-align: left"><%= link_to 'Back' , welcome_home_path , class: 'css_class', style: 'color:yellow;'%></button>
+      <button style="text-align: left"><%= link_to 'Back' , welcome_home_path , class: 'css_class', style: 'color: blue; font-size: 25px;;'%></button>
     <% end %>
     
       <table class="table table-dark table-striped" style="text-align: center;margin: 10px;" >
@@ -53,8 +53,6 @@
         </tbody>
       </table>
       <hr>
-    <%debugger%>
-
       <% if @student.role == "student" && @student.borrow_histories.any? %>
         <table class="table table-striped table-dark" style="text-align: center;margin: 10px;" >
       <thead>

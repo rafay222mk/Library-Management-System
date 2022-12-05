@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Library</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <style>
+      .msg {
+          padding-top: 10px;
+          text-align: center;
+          color: yellow;
+      }
+    </style>
+  </head> 
+
+  <body style="background-image: url(<%= asset_path 'lib2.jpg' %>); background-repeat: no-repeat; background-size: cover " >
+  <div class="container" style="position: center">
+  <h2 class="msg" ><%= notice %></h2>
+  <h2 class="msg"><%= alert %></h2>
+    <%= yield %>
+    <%= turbo_frame_tag 'remote_modal' %>
+  </div>
+
+
+  </body>
+</html>

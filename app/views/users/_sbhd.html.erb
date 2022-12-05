@@ -1,0 +1,42 @@
+<%= turbo_frame_tag :remote_modal, target: :_top do  %>
+ <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-controller="display" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header " style="background: #3B2F2F ; " >
+        <h5 class="modal-title" id="exampleModalLabel" style="color: wheat; " >Borrowed Books</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-action='click->display#disconnect'></button>
+      </div>
+        <% if @student.borrow_histories.any? %>
+          <div class="modal-body " style="background: #C88141 ; " >
+          <table class="table table-striped table-dark" style="text-align: center;margin: 10px;" >
+          <thead>
+          <th colspan="5" >Student Borrowed Books</th>
+          </thead>
+          <tbody>
+          <tr>
+            <td>User Name</td>
+            <td>Book Name</td> 
+            <td>Due Date</td>
+            <td>Fine</td> 
+          </tr>
+          <% @student.borrow_histories.each do |b| %>
+            <tr >
+              <td><%= b.user.user_name %></td>
+              <td><%= b.book&.title %></td>
+              <td><%= b.due_date  %></td>
+              <td> <%= b.fine %> </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <% else %>
+          <h4 style="text-align: center;" >No Book Borrowed by this student</h4>
+        <% end %>
+      </div>
+      <div class="modal-footer" style="background: #3B2F2F; " >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-action='click->display#disconnect'>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

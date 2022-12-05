@@ -1,0 +1,42 @@
+<html>
+<head>
+  <style>
+      .csform{
+          text-align: center;
+          margin: 10px;
+      }
+      .csform > input[type="submit"]{
+          background-color: #3B0000;
+          height: 25%;
+          width: 25%;
+          border-radius: 30px;
+          border: none;
+          padding: 10px;
+          color: wheat;
+      }
+  </style>
+</head>
+  <body>
+      <div style=" display: flex; justify-content: center;" >
+        <h3 style="color: wheat" >Are You Sure ..?</h3>
+      </div>
+
+            <%= form_with model: @borrow do |form| %>
+            <% if @borrow.errors.any? %>
+            <% @borrow.errors.full_messages.each do |message| %>
+              <h3 style="text-align: center; color: yellow" ><%= message %></h3>
+            <% end %>
+          <% end %>
+            <div class="csform" >
+              <%= form.hidden_field :book_id, value: params[:book_id].to_i %>
+              <%= form.hidden_field :user_id, value: current_user.id %>
+              <%= form.hidden_field :status, value: "borrowed" %>
+  
+              <%= form.hidden_field :due_date, value: Date.today+7.days %>
+              <%= form.submit "Borrow" %>              
+              <br><p style="text-align: center"><%= link_to 'Back' , books_path , class: 'css_class', style: 'color:yellow;' %></p>
+            </div>
+          <% end %>
+         
+  </body>
+</html>

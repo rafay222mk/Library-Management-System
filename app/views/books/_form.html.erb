@@ -1,0 +1,76 @@
+<html>
+<head>
+  <style>
+      .csform{
+          text-align: center;
+          margin: 10px;
+      }
+      .csform > label{
+          align-self: center;
+          color: whitesmoke;
+      }
+      .csform > input[type="text"]{
+          background-color: wheat;
+          border:none;
+      }
+      .csform > input[type="date"]{
+          background-color: wheat;
+          border:none;
+      }
+      .csform > input[type="submit"]{
+          background-color: #3B0000 ;
+          height: 100%;
+          width: 100%;
+          border-radius: 30px;
+          border: none;
+          padding: 10px;
+                    color: wheat;
+      }
+  </style>
+</head>
+  <body>
+  <div style=" display: flex; justify-content: center">
+    <div style="background-color: #8B4513; padding: 50px; margin: 30px; border-radius: 10px; ">
+      <div style=" display: flex; justify-content: center">
+        <%= form_with model: @book  do |form| %>
+          <% if @book.errors.any? %>
+            <% @book.errors.full_messages.each do |message| %>
+              <p style="text-align: center; color: wheat" ><%= message %></p>
+            <% end %>
+          <% end %>
+          <div class="csform" >
+            <%= form.label :Title %>
+          </div>
+          <div class="csform">
+            <%= form.text_field :title %>
+          </div>
+          <div class="csform" >
+            <%= form.label :Description %>
+          </div>
+          <div class="csform">
+            <%= form.text_field :description %>
+          </div>
+          <div class="csform">
+            <%= form.label :Published_Date %>
+          </div>
+          <div class="csform">
+            <%= form.date_field :publish_date %>
+          </div>
+
+          <div class="csform">
+            <%= form.label :Image %>
+          </div>
+          <div class="csform">
+            <%= form.file_field :image %>
+          </div>
+          <div class="csform">
+            <%= form.hidden_field :user_id , value: current_user.id %>
+            <%= form.submit %>
+          </div>
+          <div>
+            <br><p style="text-align: center"><%= link_to 'Back' , books_path , class: 'css_class', style: 'color: wheat; text-align: center; ' %></p>
+          </div>
+        <% end %>
+  </div>
+  </body>
+</html>

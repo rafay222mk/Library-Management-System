@@ -1,0 +1,87 @@
+<html>
+<head>
+  <title>  List </title>
+  <style>
+      hr {
+          align-self: center;
+          width: 50%;
+      }
+      h1{
+          text-align: center;
+          color: wheat;
+      }
+      h2{
+          text-align: center;
+          color: wheat;
+      }
+      p{
+          text-align: center;
+          color: wheat;
+      }
+  </style>
+</head>
+  <body>
+    <br>
+    <div class="container ">
+    
+    <% if current_user.role == "admin" || current_user.role == "libraian" %>
+      <% if @student.role == "student" %>
+      <button style="text-align: left"><%= link_to 'Back' , users_path(show: 'student_list') , class: 'css_class', style: 'color:yellow;'%></button>  
+      <% elsif @student.role == "libraian" %>
+      <%# debugger %>
+      <button style="text-align: left"><%= link_to 'Back' , users_path(show: 'librarian_list') , class: 'css_class', style: 'color:yellow;'%></button>
+       <% else %>
+      <button style="text-align: left"><%= link_to 'Back' , welcome_home_path , class: 'css_class', style: 'color:yellow;'%></button>
+      <% end %>
+      <% else %>
+      <button style="text-align: left"><%= link_to 'Back' , welcome_home_path , class: 'css_class', style: 'color:yellow;'%></button>
+    <% end %>
+    
+      <table class="table table-dark table-striped" style="text-align: center;margin: 10px;" >
+        <thead>
+          <th colspan="2" >List of the <%= @student.role %> </th>
+        </thead>
+        <tbody>
+        <tr>
+          <td>User Name</td>
+          <td><%= @student.user_name %></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><%= @student.email %></td>
+        </tr>
+        </tbody>
+      </table>
+      <hr>
+    <%debugger%>
+
+      <% if @student.role == "student" && @student.borrow_histories.any? %>
+        <table class="table table-striped table-dark" style="text-align: center;margin: 10px;" >
+      <thead>
+      <th colspan="5" >Student Borrowed Books</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td > Student User Name </td>
+        <td>Book Name</td>
+        <td>Due Date</td>
+        <td>Fine</td>
+        <td>Actions</td>  
+      </tr>
+      <% @student.borrow_histories.each do |b| %>
+        <tr >
+          <td><%= b.user.user_name %></td>
+          <td><%= b.book&.title %></td>
+          <td><%= b.due_date  %></td>
+          <td> <%= b.fine %> </td>
+          <td>
+            <%= button_to 'Delete' , borrow_history_path(b) ,method: :delete , data: { turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+      <% end %>
+    </div>
+  </body>
+</html>

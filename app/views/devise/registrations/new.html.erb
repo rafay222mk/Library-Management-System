@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <style>
+        .csform{
+            text-align: center;
+            margin: 10px;
+        }
+        .csform > label{
+            align-self: center;
+            color: whitesmoke;
+        }
+        .csform > input[type="text"]{
+            background-color: wheat;
+            border:none;
+        }
+        .csform > input[type="email"]{
+            background-color: wheat;
+            border:none;
+        }
+        .csform > input[type="submit"]{
+            background-color: #3B0000 ;
+            height: 100%;
+            width: 100%;
+            border-radius: 30px;
+            border: none;
+            padding: 10px;
+            color: #8B4513;
+        }
+    </style>
+  </head>
+  <body>
+  <div style=" display: flex; justify-content: center">
+    <div style="background-color: #8B4513; padding: 50px; margin: 30px; border-radius: 10px; ">
+      <h2 style="text-align: center; color: #3B0000;">Sign up</h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="csform">
+          <%= f.label :User_Name %>
+          </div>
+        <div class="csform">
+          <%= f.text_field :user_name , autofocus: true, autocomplete: "user_name" %>
+        </div>
+
+        <div class="csform">
+          <%= f.label :email %><br />
+          </div>
+        <div class="csform">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="csform">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+            <em style="color: yellow">(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          </div>
+        <div class="csform">
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+
+        <div class="csform">
+          <%= f.label :password_confirmation %><br />
+          </div>
+        <div class="csform">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <div class="csform">
+          <%#= f.label :Role %><br />
+          </div>
+        <div class="csform">
+        <% if user_signed_in?  %>
+          <%= f.select(:role, User::ROLE_LIST) %> 
+        </div>
+        <% end %>
+
+        <div class="csform">
+          <%= f.submit "Sign up" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+  </body>
+</html>

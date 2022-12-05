@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <style>
+      .csform{
+          text-align: center;
+          margin: 10px;
+      }
+      .csform > label{
+          align-self: center;
+          color: whitesmoke;
+      }
+      .csform > input[type="text"]{
+          background-color: transparent;
+          border:none;
+      }
+      .csform > input[type="submit"]{
+          background-color: #3B0000;
+          height: 100%;
+          width: 100%;
+          border-radius: 30px;
+          border: none;
+          padding: 10px;
+          color: wheat;
+      }
+    </style>
+  </head>
+  <body>
+  <div style=" display: flex; justify-content: center">
+    <div style="background-color: #8B4513; padding: 50px; margin: 30px; border-radius: 10px; ">
+    <h2 style="text-align: center; color: #3B0000;"  >Change Password</h2>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+        <div class="csform">
+           <%= f.label :password, "New password" %><br />
+        </div>
+         <% if @minimum_password_length %>
+          <em style="color: yellow; text-align: center; " >(<%= @minimum_password_length %> characters minimum)</em><br />
+        <% end %>
+        <div class="csform">
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+        </div>
+        <div class="csform">
+          <%= f.label :password_confirmation, "Confirm new password" %><br />
+          </div>
+        <div class="csform">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+        <div class="csform">
+          <%= f.submit "Change my password" %>
+        </div>
+      <% end %>
+      <br>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+  </body>
+</html>
+
+

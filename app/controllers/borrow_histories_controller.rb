@@ -10,7 +10,10 @@ class BorrowHistoriesController < ApplicationController
   def create
     @borrow = BorrowHistory.new(borrow_params)
     if @borrow.save
-      redirect_to books_path, notice: 'Borrowed Sucessfully'
+      book = @borrow.book
+      quan = book.quantity
+      book.update_columns(quantity: quan  -1)
+      redirect_to books_path, notice: 'Borrowed Successfully'
     else
       # debugger
       render :new, status: :unprocessable_entity
@@ -22,10 +25,13 @@ class BorrowHistoriesController < ApplicationController
   end
 
   def destroy
-    # debugger
     @borrow = BorrowHistory.find(params[:id])
-    @borrow.destroy
-    redirect_to showbh_user_path(current_user.id), status: :see_other
+    if @borrow.destroy
+      book = @borrow.book
+      quan = book.quantity
+      book.update_columns(quantity: quan  +1)
+      redirect_to showbh_user_path(current_user.id), status: :see_other
+    end
   end
 
   private

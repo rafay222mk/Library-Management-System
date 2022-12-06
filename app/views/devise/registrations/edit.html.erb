@@ -72,12 +72,15 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
-        <div class="csform" >
-          <%= f.label :current_password %> <br> <i style= "color: yellow;" >(we need your current password to confirm your changes)</i><br />
+        <div class="csform">
+          <%= f.label :Select_Image_File %><br />
+        </div>
+        <div class="csform">
+          <%= image_tag current_user.image, style: 'width: 50px; border-radius: 50px; '  if current_user.image.attached? %><br />
         </div>
         <div class="csform" >
-          <%= f.password_field :current_password, autocomplete: "current-password" %>
-        </div> 
+          <h5  style="color: yellow" ><%= f.file_field :image %></h5>
+        </div>
 
         <div class="csform">
           <%= f.submit "Update" %>

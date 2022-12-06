@@ -23,7 +23,6 @@
   <body>
     <br>
     <div class="container ">
-    
     <% if current_user.role == "admin" || current_user.role == "libraian" %>
       <% if @student.role == "student" %>
       <button style="text-align: left"><%= link_to 'Back' , users_path(show: 'student_list') , class: 'css_class', style: 'color: blue; font-size: 25px;'%></button>  
@@ -49,6 +48,10 @@
         <tr>
           <td>Email</td>
           <td><%= @student.email %></td>
+        </tr>
+        <tr>
+          <td>Profile Picture</td>
+          <td><%= image_tag @student.image, style: 'width: 50px; border-radius: 50px;}' if  @student.image.attached? %></td>
         </tr>
         </tbody>
       </table>

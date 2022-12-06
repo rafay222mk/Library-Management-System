@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'welcome/home'
 
-  devise_for :users
+  devise_for :users , controllers: { registrations: "user/registrations"  }
 
   resources :books do
     collection do

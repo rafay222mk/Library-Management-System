@@ -2,9 +2,10 @@
   <head>
     <title>Home Page</title>
   </head>
-  <div style="float: inline-end; display; flex" >
-    <h3 style="text-align: center" ><%= button_to 'Sign Out' , destroy_user_session_path, method: :delete , data: { confirm: '
-                Dp you want to sing out ? '}, data: { turbo: false }  %></h3>
+  <div style="float: right; display: flex;" >
+  <%= image_tag current_user.image, style: 'width: 50px; border-radius: 50px; ' if  current_user.image.attached? %>
+    <h2 style="margin: auto" ><%= button_to 'Sign Out' , destroy_user_session_path, method: :delete , data: { confirm: '
+                Do you want to sing out ? '}, data: { turbo: false }  %></h2>
   </div>
   <div class="container">
     <body>

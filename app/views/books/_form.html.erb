@@ -56,9 +56,13 @@
           <div class="csform">
             <%= form.date_field :publish_date %>
           </div>
-
           <div class="csform">
             <%= form.label :Image %>
+          </div>
+          <div style="display: flex; justify-content: center; " >
+            <% if form.object.persisted?%>
+            <%= image_tag form.object.image, style: 'width: 50px;  ' %>
+            <% end %>
           </div>
           <div class="csform">
             <%= form.file_field :image %>
@@ -71,6 +75,8 @@
             <br><p style="text-align: center"><%= link_to 'Back' , books_path , class: 'css_class', style: 'color: wheat; text-align: center; ' %></p>
           </div>
         <% end %>
-  </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,8 +1,11 @@
+
 # frozen_string_literal: true
 
 class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :borrow_histories, dependent: :destroy
+  has_one_attached :image
+
 
   scope :std_list, -> { where(role: 'student') }
   scope :lib_list, -> { where(role: 'libraian') }

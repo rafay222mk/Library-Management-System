@@ -68,8 +68,12 @@
         </div>
 
         <div class="csform">
-          <%#= f.label :Role %><br />
-          </div>
+          <%= f.label :Select_Image_File %><br />
+        </div>
+        <div>
+          <%= f.file_field :image %>
+        </div>
+
         <div class="csform">
         <% if user_signed_in?  %>
           <%= f.select(:role, User::ROLE_LIST) %> 

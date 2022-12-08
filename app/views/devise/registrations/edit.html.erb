@@ -85,20 +85,22 @@
         <div data-controller="address" >
           <h2 style="text-align: center; color: wheat" >Addresses</h2>
           <template data-target="address.template" >
-            <%= f.fields_for :addresses , Address.new do |adds| %>
-                <%= render partial: "address", locals: { f: adds } %>
+            <%= f.fields_for :addresses , Address.new ,child_index: "TEMPLATE_RECORD" do |adds| %>
+            <%= render partial: "address_fields", locals: { f: adds } %>
             <% end %>
           </template>
 
-          <%= f.fields_for :addresses , child_index: "TEMPLATE_RECORD" do |adds| %>
-            <%= render partial: "address", locals: { f: adds } %>
-          <% end %>
+         <%= f.fields_for :addresses  do |adds| %>
+           <%= render partial: "address_fields", locals: { f: adds } %>
+         <% end %>
 
-          <div data-target="address.add" >
-            <%= link_to "Add Address" , "#" , data: { action: "address#add_address" } %>
+          <div data-target="address.add_item">
+            <%= link_to "Add Address", "#", data: { action: "address#add_association" } %>
           </div>
-
         </div>
+
+<!--          <div data-target="address.add" > </div>-->
+        <%#= link_to_add_association "Add Address" , f , :addresses, class: 'btn btn-primary' ,  data: { association_insertion_model: '.adds', association_insertion_method: :append  } %>
 
         <div class="csform">
           <%= f.submit "Update" %>

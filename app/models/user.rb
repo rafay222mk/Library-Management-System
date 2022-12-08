@@ -4,7 +4,7 @@
 class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :borrow_histories, dependent: :destroy
-  has_many :addresses, dependent: :destroy
+  has_many :addresses, dependent: :destroy, inverse_of: :user
   has_one_attached :image
   accepts_nested_attributes_for :addresses , allow_destroy: true
   scope :std_list, -> { where(role: 'student') }

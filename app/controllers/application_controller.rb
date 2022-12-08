@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[user_name email password current_password role image addresses_attributes: [ :_destroy :address1 ,:address2, :zipcode, :city, :state, :country] ])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[user_name email password current_password role image addresses_attributes: [ :_destroy :address1 ,:address2, :zipcode, :city, :state, :country] ] )
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name,:email,:password,:current_password,:role,:image, addresses_attributes: [ :_destroy, :address1 ,:address2, :zipcode, :city, :state, :country] ] )
+    devise_parameter_sanitizer.permit(:account_update, keys: [:user_name,:email,:password,:current_password,:role,:image, addresses_attributes: [ :_destroy, :address1 ,:address2, :zipcode, :city, :state, :country] ] )
   end
 end

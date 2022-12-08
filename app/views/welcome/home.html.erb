@@ -23,9 +23,6 @@
         <button class="btn btn-outline-warning btn-lg"><%= link_to 'Edit Profile' , edit_user_registration_path , class: 'css_class', style: 'color:yellow;' %></button>
       <button class="btn btn-light btn-lg"> <%= link_to 'Personal Information', showbh_user_path(current_user.id) if can? :read, current_user , class: 'css_class', style: 'color:yellow;' %>  </button>  
       </div>
-    <div class="hep" >
-      <button class="btn btn-light btn-lg"> <%= link_to 'Add Address', new_user_address_path(@user.id) if can? :read, current_user , class: 'css_class', style: 'color:yellow;' %>  </button>
-    </div>
       <% if current_user.role == 'admin' %>
       <button class="btn btn-outline-warning btn-lg" ><%= link_to 'Books Lidt' , books_path , class: 'css_class', style: 'color: yellow;' %></button>
         <button class="btn btn-outline-warning btn-lg"> <%= link_to 'Students List' , users_path(show: 'student_list') , class: 'css_ceElass', style: 'color:yellow;' %> </button>

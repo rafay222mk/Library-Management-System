@@ -25,52 +25,64 @@
             border: none;
             padding: 10px;
         }
+        .form_design{
+            display: flex;
+            flex-direction: column;
+            color: wheat;
+        }
+        .form_design > label{
+            color: whitesmoke;
+        }
+        .form_design > input{
+            margin-bottom: 10px
+        }
     </style>
   </head>
   <body>
   <div style=" display: flex; justify-content: center; background: #3B0000    ">
-    <div style="background-color: #000000; padding: 50px; margin: 30px; border-radius: 10px; ">
+    <div style="background-color: #000000; padding: 50px; margin: 30px; border-radius: 10px; " class="address container">
         <div class="f-group" >
           <%= f.hidden_field  :_destroy %>
-          <div class="csform" >
+          <div class="form_design" >
             <%= f.label :Address_1 %>
-          </div>
-          <div class="csform">
             <%= f.text_field :address1 %>
+
           </div>
-          <div class="csform" >
+          <div class="form_design" >
+
             <%= f.label :Address_2 %>
-          </div>
-          <div class="csform">
             <%= f.text_field :address2 %>
+
           </div>
-          <div class="csform">
+          <div class="form_design" >
+
             <%= f.label :Zipcode %>
-          </div>
-          <div class="csform">
             <%= f.number_field :zipcode %>
+
           </div>
-          <div class="csform" >
-            <%= f.label :City %>
-          </div>
-          <div class="csform">
+          <div class="form_design" >
+
+          <%= f.label :City %>
             <%= f.text_field :city %>
+
           </div>
-          <div class="csform" >
+          <div class="form_design" >
+
             <%= f.label :State %>
-          </div>
-          <div class="csform">
             <%= f.text_field :state %>
+
           </div>
-          <div class="csform" >
-            <%= f.label :Country %>
-          </div>
-          <div class="csform">
+          <div class="form_design" >
+
+          <%= f.label :Country %>
             <%= f.text_field :country %>
+
           </div>
-          <small>
-            <%= link_to "Remove", "#" , data: { action: "click->address#remove" } %>
-          </small>
+
+              <%#= button_to 'Delete'   %>
+              <%= link_to "Remove", "#", data: { action: "click->address#remove_association" } %>
+
+          <%#= link_to_remove_association "deldte" , f , class: 'btn btn-primary' %>
         </div>
     </div>
   </div>

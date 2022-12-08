@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'addresses/index'
-  get 'addresses/show'
-  get 'addresses/new'
-  get 'addresses/edit'
-  get 'studenta/index'
-  get 'studenta/show'
 
   get 'welcome/home'
 
-  devise_for :users , controllers: { registrations: "user/registrations"  }
+  devise_for :users , controllers: { registrations: "user/registrations" }
 
   resources :books do
     collection do

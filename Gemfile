@@ -78,3 +78,5 @@ gem 'cssbundling-rails'
 gem 'devise'
 
 gem 'cancancan'
+
+gem 'cocoon'

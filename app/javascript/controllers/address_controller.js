@@ -2,24 +2,26 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="address"
 export default class extends Controller {
-  static targets = ['add', "template"]
+  static targets = ['add_item', "template"]
   connect() {
-    console.log("connected")
+    console.log("connected nested form")
   }
   debugger
-  add_address(event){
+
+  add_association(event) {
     event.preventDefault()
-    var contemt = this.templateTarget.innerHTML.replace(/TEMPLATE_RECORD/g,Math.floor(Math.random() * 20))
-    this.add_itmeTarget.insertAdjacentHTML("beforebegin" , contemt)
+    var content = this.templateTarget.innerHTML.replace(/TEMPLATE_RECORD/g, new Date().valueOf())
+    this.add_itemTarget.insertAdjacentHTML('beforebegin', content)
   }
 
-  remove(event) {
-    console.log("remove function called")
+  remove_association(event) {
+    console.log("remove")
+    // debugger
     event.preventDefault()
     let item = event.target.closest(".address")
     item.querySelector("input[name*='_destroy']").value = 1
-    item.style.display = "none"
-
+    item.style.display = 'none'
+    console.log("removed successfully")
   }
 
 }

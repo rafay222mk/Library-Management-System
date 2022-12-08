@@ -13,7 +13,7 @@
     <h2 style="margin: auto" ><%= button_to 'Sign Out' , destroy_user_session_path, method: :delete , data: { confirm: 'Do you want to sign out '}, data: { turbo: false }  %></h2>
   </div>
   <div class="container">
-    <body>
+    <body> Welcome admin  Welcome admin
     <h1 style="text-align: center; color: yellow">List of the Books</h1>
       <div class="links" >
         <% if current_user.role == "admin" || current_user.role == "libraian" %>
@@ -30,7 +30,10 @@
       <th>Publish Date</th>
       <th>Author Name</th>
       <th>Image</th>
-      <th colspan="5" style="text-align: center;"Pim >Actions</th>
+      <% if current_user.role == "admin" || current_user.role == "libraian" %>
+      <th>Quantity</th>
+      <% end %>
+      <th colspan="5" style="text-align: center;" >Actions</th>
       </thead>
       <tbody>
       <% @books.each do |book| %>
@@ -40,9 +43,11 @@
           <td><%= book.publish_date %></td>
           <td><%= book.user.user_name %></td>
           <td style='width: 50px; height: 50px'><%= image_tag book.image, style: 'width: 50px ' if  book.image.attached? %>
-            <% if current_user.role == "admin" || current_user.role == "libraian" %>
-              <%= book.quantity %>
-            <% end %>
+            <td>
+              <% if current_user.role == "admin" || current_user.role == "libraian" %>
+                <%= book.quantity %>
+              <% end %>
+            </td>
           <td><button class="btn btn-outline-info  " ><%= link_to 'View' , book %></button></td>
           <td>
              <% if current_user.role == "admin" || current_user.role == "libraian" %>

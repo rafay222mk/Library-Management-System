@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <style>
+        .csform{
+            text-align: center;
+            margin: 10px;
+        }
+        .csform > label{
+            align-self: center;
+            color: whitesmoke;
+        }
+        .csform > input[type="text"]{
+            background-color: wheat;
+            border:none;
+        }
+        .csform > input[type="email"]{
+            background-color: wheat;
+            border:none;
+        }
+        .csform > input[type="submit"]{
+            background-color: #59238F;
+            height: 100%;
+            width: 100%;
+            border-radius: 30px;
+            border: none;
+            padding: 10px;
+        }
+    </style>
+  </head>
+  <body>
+  <div style=" display: flex; justify-content: center; background: #3B0000    ">
+    <div style="background-color: #000000; padding: 50px; margin: 30px; border-radius: 10px; ">
+        <div class="f-group" >
+          <%= f.hidden_field  :_destroy %>
+          <div class="csform" >
+            <%= f.label :Address_1 %>
+          </div>
+          <div class="csform">
+            <%= f.text_field :address1 %>
+          </div>
+          <div class="csform" >
+            <%= f.label :Address_2 %>
+          </div>
+          <div class="csform">
+            <%= f.text_field :address2 %>
+          </div>
+          <div class="csform">
+            <%= f.label :Zipcode %>
+          </div>
+          <div class="csform">
+            <%= f.number_field :zipcode %>
+          </div>
+          <div class="csform" >
+            <%= f.label :City %>
+          </div>
+          <div class="csform">
+            <%= f.text_field :city %>
+          </div>
+          <div class="csform" >
+            <%= f.label :State %>
+          </div>
+          <div class="csform">
+            <%= f.text_field :state %>
+          </div>
+          <div class="csform" >
+            <%= f.label :Country %>
+          </div>
+          <div class="csform">
+            <%= f.text_field :country %>
+          </div>
+          <small>
+            <%= link_to "Remove", "#" , data: { action: "click->address#remove" } %>
+          </small>
+        </div>
+    </div>
+  </div>
+  </body>
+</html>

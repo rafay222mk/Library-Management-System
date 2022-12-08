@@ -81,6 +81,24 @@
         <div class="csform" >
           <h5  style="color: yellow" ><%= f.file_field :image %></h5>
         </div>
+        <br><br><br>
+        <div data-controller="address" >
+          <h2 style="text-align: center; color: wheat" >Addresses</h2>
+          <template data-target="address.template" >
+            <%= f.fields_for :addresses , Address.new do |adds| %>
+                <%= render partial: "address", locals: { f: adds } %>
+            <% end %>
+          </template>
+
+          <%= f.fields_for :addresses , child_index: "TEMPLATE_RECORD" do |adds| %>
+            <%= render partial: "address", locals: { f: adds } %>
+          <% end %>
+
+          <div data-target="address.add" >
+            <%= link_to "Add Address" , "#" , data: { action: "address#add_address" } %>
+          </div>
+
+        </div>
 
         <div class="csform">
           <%= f.submit "Update" %>

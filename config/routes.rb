@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'addresses/index'
+  get 'addresses/show'
+  get 'addresses/new'
+  get 'addresses/edit'
   get 'studenta/index'
   get 'studenta/show'
 
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users do
+    resources :addresses
     member do
       get :showbh
     end

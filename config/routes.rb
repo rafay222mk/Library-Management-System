@@ -3,8 +3,9 @@
 Rails.application.routes.draw do
 
   get 'welcome/home'
+  get 'states/fetch_country_states'
 
-  devise_for :users , controllers: { registrations: "user/registrations" }
+  devise_for :users , controllers: { registrations: "user/registrations" ,  }
 
   resources :books do
     collection do
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
   end
   resources :users do
     resources :addresses
+    # collection do
+    #   get :fetch_country_states
+    # end
     member do
       get :showbh
     end

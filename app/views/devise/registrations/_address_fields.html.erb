@@ -36,6 +36,9 @@
         .form_design > input{
             margin-bottom: 10px
         }
+        .form_design > select{
+            margin-bottom: 10px
+        }
     </style>
   </head>
   <body>
@@ -46,45 +49,39 @@
           <div class="form_design" >
             <%= f.label :Address_1 %>
             <%= f.text_field :address1 %>
-
           </div>
           <div class="form_design" >
-
             <%= f.label :Address_2 %>
             <%= f.text_field :address2 %>
-
           </div>
           <div class="form_design" >
-
             <%= f.label :Zipcode %>
             <%= f.number_field :zipcode %>
-
           </div>
           <div class="form_design" >
-
-          <%= f.label :City %>
+            <%= f.label :City %>
             <%= f.text_field :city %>
-
+          </div>
+<!--          <div class="form_design"  >-->
+            <%#= f.label :Country %>
+            <%#= f.select(:country, [["Pakistan", "pk" ], ['USA','us'], ['Canada', 'can']], {include_blank: "Select State"} , data: { controller: 'conturies' } ) %>
+          </div>
+          <div class="form_design"  >
+            <%= f.label :Country %>
+            <%# debugger %>
+            <%= f.select :country, Country.all.collect {|u| [ u.country_name, u.id ]},{include_blank: "Select Country"}, data: { controller: 'conturies' }  %>
+          </div>
+          <div class="form_design" id="country_state_list" >
           </div>
           <div class="form_design" >
-
-            <%= f.label :State %>
-            <%= f.text_field :state %>
-
+            <%#= f.label :State %>
+            <%#= f.select :state, value: { controller: 'state' } %>
+            <%#= f.select(:state,  [["Pakistan", "pk" ], ['USA','pk'], ['Canada', 'can']], {include_blank: "Select Country"}, { :class => 'country'}  ) %>
           </div>
-          <div class="form_design" >
-
-          <%= f.label :Country %>
-            <%= f.text_field :country %>
-
-          </div>
-
-              <%#= button_to 'Delete'   %>
-              <%= link_to "Remove", "#", data: { action: "click->address#remove_association" } %>
-
+          <%#= button_to 'Delete'   %>
+          <%= link_to "Remove", "#", data: { action: "click->address#remove_association" } %>
           <%#= link_to_remove_association "deldte" , f , class: 'btn btn-primary' %>
         </div>
     </div>
-  </div>
   </body>
 </html>

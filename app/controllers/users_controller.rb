@@ -14,4 +14,7 @@ class UsersController < ApplicationController
   def showbh
     @student = User.find(params[:id])
   end
+  def fetch_country_states
+    debugger
+  end
 end

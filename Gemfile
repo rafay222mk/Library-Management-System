@@ -80,3 +80,5 @@ gem 'devise'
 gem 'cancancan'
 
 gem 'cocoon'
+
+gem 'country_select', '~> 6.0'

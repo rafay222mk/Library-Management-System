@@ -13,7 +13,6 @@ export default class extends Controller {
     var content = this.templateTarget.innerHTML.replace(/TEMPLATE_RECORD/g, new Date().valueOf())
     this.add_itemTarget.insertAdjacentHTML('beforebegin', content)
   }
-
   remove_association(event) {
     console.log("remove")
     // debugger
@@ -23,5 +22,6 @@ export default class extends Controller {
     item.style.display = 'none'
     console.log("removed successfully")
   }
+
 
 }

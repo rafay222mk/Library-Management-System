@@ -21,5 +21,4 @@ export default class extends Controller {
         .then(response => response.text())
         .then(html => Turbo.renderStreamMessage(html))
   }
-
 }

@@ -72,12 +72,12 @@
             <%= f.select :country, Country.all.collect {|u| [ u.country_name, u.id ]},{include_blank: "Select Country"}, data: { controller: 'conturies' }  %>
           </div>
           <div class="form_design" id="country_state_list" >
+            <%#= f.select(:state,  state: { address_fields: "input", action: "change->conturies#change" }) %>
           </div>
-          <div class="form_design" >
+<!--          <div class="form_design" >-->
             <%#= f.label :State %>
-            <%#= f.select :state, value: { controller: 'state' } %>
-            <%#= f.select(:state,  [["Pakistan", "pk" ], ['USA','pk'], ['Canada', 'can']], {include_blank: "Select Country"}, { :class => 'country'}  ) %>
-          </div>
+            <%#= f.select :state %>
+<!--          </div>-->
           <%#= button_to 'Delete'   %>
           <%= link_to "Remove", "#", data: { action: "click->address#remove_association" } %>
           <%#= link_to_remove_association "deldte" , f , class: 'btn btn-primary' %>

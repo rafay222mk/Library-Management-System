@@ -3,10 +3,10 @@
     <div class="form-group" id="country_state_list" >
       <div class="form_design">
         <label>Select</label>
-        <select name="state"  >
+        <select name="state" value="state.state_name"  >
           <% @state.each do |state|  %>
-            <option value="<%= state.id %>" >
-              <%= state.state_name %>
+            <option value="<%= state.state_name %>" >
+              <%=  state.state_name  %>
             </option>
           <% end %>
         </select>

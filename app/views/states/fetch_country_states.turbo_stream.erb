@@ -1,16 +1,10 @@
-<% if @state.present? %>
-  <%= turbo_stream.replace "country_state_list" do %>
-    <div class="form-group" id="country_state_list" >
-      <div class="form_design">
-        <label>Select</label>
-        <select name="state" value="state.state_name"  >
-          <% @state.each do |state|  %>
-            <option value="<%= state.state_name %>" >
-              <%=  state.state_name  %>
-            </option>
-          <% end %>
-        </select>
-      </div>
-    </div>
-  <% end %>
-<% end %>
+<%# if @state.present? %>
+  <%#= turbo_stream.replace "country_state_list" do %>
+    <option>Select State</option>
+      <% @state.each do |state|  %>
+        <option value="<%= state.state_name %>" >
+          <%=  state.state_name  %>
+        </option>
+    <% end %>
+  <%# end %>
+<%# end %>

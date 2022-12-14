@@ -1,87 +1,92 @@
 <html>
-  <head>
-    <style>
-        .csform{
-            text-align: center;
-            margin: 10px;
-        }
-        .csform > label{
-            align-self: center;
-            color: whitesmoke;
-        }
-        .csform > input[type="text"]{
-            background-color: wheat;
-            border:none;
-        }
-        .csform > input[type="email"]{
-            background-color: wheat;
-            border:none;
-        }
-        .csform > input[type="submit"]{
-            background-color: #59238F;
-            height: 100%;
-            width: 100%;
-            border-radius: 30px;
-            border: none;
-            padding: 10px;
-        }
-        .form_design{
-            display: flex;
-            flex-direction: column;
-            color: wheat;
-        }
-        .form_design > label{
-            color: whitesmoke;
-        }
-        .form_design > input{
-            margin-bottom: 10px
-        }
-        .form_design > select{
-            margin-bottom: 10px
-        }
-    </style>
-  </head>
-  <body>
-  <div style=" display: flex; justify-content: center; background: #3B0000    ">
-    <div style="background-color: #000000; padding: 50px; margin: 30px; border-radius: 10px; " class="address container">
-        <div class="f-group" >
-          <%= f.hidden_field  :_destroy %>
-          <div class="form_design" >
-            <%= f.label :Address_1 %>
-            <%= f.text_field :address1 %>
-          </div>
-          <div class="form_design" >
-            <%= f.label :Address_2 %>
-            <%= f.text_field :address2 %>
-          </div>
-          <div class="form_design" >
-            <%= f.label :Zipcode %>
-            <%= f.number_field :zipcode %>
-          </div>
-          <div class="form_design" >
-            <%= f.label :City %>
-            <%= f.text_field :city %>
-          </div>
-<!--          <div class="form_design"  >-->
-            <%#= f.label :Country %>
-            <%#= f.select(:country, [["Pakistan", "pk" ], ['USA','us'], ['Canada', 'can']], {include_blank: "Select State"} , data: { controller: 'conturies' } ) %>
-          </div>
-          <div class="form_design"  >
-            <%= f.label :Country %>
-            <%# debugger %>
-            <%= f.select :country, Country.all.collect {|u| [ u.country_name, u.id ]},{include_blank: "Select Country"}, data: { controller: 'conturies' }  %>
-          </div>
-          <div class="form_design" id="country_state_list" >
-            <%#= f.select(:state,  state: { address_fields: "input", action: "change->conturies#change" }) %>
-          </div>
-<!--          <div class="form_design" >-->
-            <%#= f.label :State %>
-            <%#= f.select :state %>
-<!--          </div>-->
-          <%#= button_to 'Delete'   %>
-          <%= link_to "Remove", "#", data: { action: "click->address#remove_association" } %>
-          <%#= link_to_remove_association "deldte" , f , class: 'btn btn-primary' %>
-        </div>
+<head>
+  <style>
+      .csform{
+          text-align: center;
+          margin: 10px;
+      }
+      .csform > label{
+          align-self: center;
+          color: whitesmoke;
+      }
+      .csform > input[type="text"]{
+          background-color: wheat;
+          border:none;
+      }
+      .csform > input[type="email"]{
+          background-color: wheat;
+          border:none;
+      }
+      .csform > input[type="submit"]{
+          background-color: #59238F;
+          height: 100%;
+          width: 100%;
+          border-radius: 30px;
+          border: none;
+          padding: 10px;
+      }
+      .form_design{
+          display: flex;
+          flex-direction: column;
+          color: wheat;
+      }
+      .form_design > label{
+          color: whitesmoke;
+      }
+      .form_design > input{
+          margin-bottom: 10px
+      }
+      .form_design > select{
+          margin-bottom: 10px
+      }
+  </style>
+</head>
+<body>
+<div style=" display: flex; justify-content: center; background: #3B0000    ">
+  <div style="background-color: #000000; padding: 50px; margin: 30px; border-radius: 10px; " class="address container">
+    <div class="f-group" >
+      <%= f.hidden_field  :_destroy %>
+      <div class="form_design" >
+        <%= f.label :Address_1 %>
+        <%= f.text_field :address1 %>
+      </div>
+      <div class="form_design" >
+        <%= f.label :Address_2 %>
+        <%= f.text_field :address2 %>
+      </div>
+      <div class="form_design" >
+        <%= f.label :Zipcode %>
+        <%= f.number_field :zipcode %>
+      </div>
+      <div class="form_design" >
+        <%= f.label :City %>
+        <%= f.text_field :city %>
+      </div>
+      <!--          <div class="form_design"  >-->
+      <%#= f.label :Country %>
+      <%#= f.select(:country, [["Pakistan", "pk" ], ['USA','us'], ['Canada', 'can']], {include_blank: "Select State"} , data: { controller: 'conturies' } ) %>
     </div>
-  </body>
+    <div class="form_design"  >
+      <%= f.label :Country %>
+      <%# debugger %>
+      <%= f.select :country, Country.all.collect {|u| [ u.country_name, u.id ]},{include_blank: "Select Country"}, data: { controller: 'conturies' } %>
+    </div>
+    <div class="form_design state-container">
+      <%= f.label :State %>
+      <%# debugger %>
+      <%= f.select :state , [],{include_blank: "Select State"} %>
+    </div>
+<!--    <div class="form_design" id="country_state_list" >-->
+<!--    </div>-->
+    <%# debugger %>
+    <!--          <div class="form_design" >-->
+    <%#= f.label :State %>
+    <%#= f.select :state %>
+    <!--          </div>-->
+    <%#= button_to 'Delete'   %>
+    <%= link_to "Remove", "#", data: { action: "click->address#remove_association" } %>
+    <%#= link_to_remove_association "deldte" , f , class: 'btn btn-primary' %>
+  </div>
+</div>
+</body>
 </html>

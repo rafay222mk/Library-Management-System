@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
   get 'welcome/home'
   get 'states/fetch_country_states'
 
@@ -22,6 +21,9 @@ Rails.application.routes.draw do
     end
   end
   resources :borrow_histories
+  resources :countries
+  resources :states
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

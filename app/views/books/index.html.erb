@@ -60,7 +60,7 @@
               <h6> Borrowed by Student </h6>
             <% else %>
             <% if can? :destroy, book %>
-              <%= button_to 'Delete' , book_path(book),method: :delete , data: { turbo: false } %>
+              <%= button_to 'Delete' , book_path(book)  %>
             <% end %>
           </td>
             <% end %>

@@ -24,9 +24,11 @@
       <button class="btn btn-light btn-lg"> <%= link_to 'Personal Information', showbh_user_path(current_user.id) if can? :read, current_user , class: 'css_class', style: 'color:yellow;' %>  </button>  
       </div>
       <% if current_user.role == 'admin' %>
-      <button class="btn btn-outline-warning btn-lg" ><%= link_to 'Books Lidt' , books_path , class: 'css_class', style: 'color: yellow;' %></button>
+        <button class="btn btn-outline-warning btn-lg" ><%= link_to 'Books Lidt' , books_path , class: 'css_class', style: 'color: yellow;' %></button>
         <button class="btn btn-outline-warning btn-lg"> <%= link_to 'Students List' , users_path(show: 'student_list') , class: 'css_ceElass', style: 'color:yellow;' %> </button>
         <button class="btn btn-outline-warning btn-lg"> <%= link_to 'Librarian List' , users_path(show: 'librarian_list') , class: 'css_class', style: 'color:yellow;' %> </button><br><br>
+        <button class="btn btn-outline-warning btn-lg"><%= link_to 'Countries' , countries_path , class: 'css_class', style: 'color:yellow;' %></button>
+        <button class="btn btn-outline-warning btn-lg"><%= link_to 'States' , states_path , class: 'css_class', style: 'color:yellow;' %></button><br><br>
         <div class="form" >
           <%= form_with url: import_books_path, method: :post do |form| %>
           <%= form.file_field :file, accept: ".csv" ,class: 'css_class', style: 'color:yellow;'  %> <br><br>

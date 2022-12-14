@@ -11,6 +11,7 @@ export default class extends Controller {
     this.element.setAttribute("data-action", "click->try#showModal")
   }
   showModal(event) {
+    debugger
     event.preventDefault()
     this.url = this.element.getAttribute("href")
     fetch(this.url, {

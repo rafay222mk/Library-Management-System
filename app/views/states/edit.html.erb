@@ -1,0 +1,58 @@
+<html>
+<head>
+  <style>
+      .csform{
+          text-align: center;
+          margin: 10px;
+      }
+      .csform > label{
+          align-self: center;
+          color: whitesmoke;
+      }
+      .csform > input[type="text"]{
+          background-color: wheat;
+          border:none;
+      }
+      .csform > input[type="date"]{
+          background-color: wheat;
+          border:none;
+      }
+      .csform > input[type="submit"]{
+          background-color: #3B0000 ;
+          height: 100%;
+          width: 100%;
+          border-radius: 30px;
+          border: none;
+          padding: 10px;
+          color: wheat;
+      }
+  </style>
+</head>
+<body>
+<div style=" display: flex; justify-content: center">
+  <div style="background-color: #8B4513; padding: 50px; margin: 30px; border-radius: 10px; ">
+    <div style=" display: flex; justify-content: center">
+      <%= form_with model: @state  do |form| %>
+        <% if @state.errors.any? %>
+          <% @stete.errors.full_messages.each do |message| %>
+            <p style="text-align: center; color: wheat" ><%= message %></p>
+          <% end %>
+        <% end %>
+        <div class="csform" >
+          <%= form.label :State_Name %>
+        </div>
+        <div class="csform">
+          <%= form.text_field :state_name %>
+        </div>
+        <div class="csform">
+          <%= form.submit 'Edit State' %>
+        </div>
+        <div>
+          <br><p style="text-align: center"><%= link_to 'Back' , state_path , class: 'css_class', style: 'color: wheat; text-align: center; ' %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</body>
+</html>

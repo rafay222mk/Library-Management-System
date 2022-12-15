@@ -29,12 +29,21 @@
         <button class="btn btn-outline-warning btn-lg"> <%= link_to 'Librarian List' , users_path(show: 'librarian_list') , class: 'css_class', style: 'color:yellow;' %> </button><br><br>
         <button class="btn btn-outline-warning btn-lg"><%= link_to 'Countries' , countries_path , class: 'css_class', style: 'color:yellow;' %></button>
         <button class="btn btn-outline-warning btn-lg"><%= link_to 'States' , states_path , class: 'css_class', style: 'color:yellow;' %></button><br><br>
-        <div class="form" >
+        <div class="form"  >
+          <h3>Import Books</h3>
           <%= form_with url: import_books_path, method: :post do |form| %>
           <%= form.file_field :file, accept: ".csv" ,class: 'css_class', style: 'color:yellow;'  %> <br><br>
           <%= form.button "Upload" , class: 'css_class', style: 'color:blue;  font-size: 20px;  ' %>
+            <% end %>
         </div>
-        <% end %>
+
+        <div class="form" style="float: right;" >
+          <h3>Import Students</h3>
+          <%= form_with url: import_users_path, method: :post do |form| %>
+          <%= form.file_field :file, accept: ".csv" ,class: 'css_class', style: 'color:yellow;'  %> <br><br>
+          <%= form.button "Upload" , class: 'css_class', style: 'color:blue;  font-size: 20px;  ' %>
+          <% end %>
+        </div>
         <% elsif current_user.role == 'libraian' %>
         <button class="btn btn-outline-warning btn-lg" ><%= link_to 'Books List' , books_path , class: 'css_class', style: 'color:yellow;' %></button>
         <button class="btn btn-outline-warning btn-lg"> <%= link_to 'Students List' , users_path(show: 'student_list') , class: 'css_class', style: 'color:yellow;' %> </button>

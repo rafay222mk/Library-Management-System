@@ -47,9 +47,11 @@
             <% if user.role == 'student' %>
               <td> <button class="btn btn-outline-info"  ><%= link_to 'Borrowed List', user_path(user), data: { controller: 'try' } %></button> </td>
             <% end %>
+            <% if can? :destroy, user %>
             <td>
-              <%= button_to 'Delete' , user_path(user) if can? :destroy, user , method: :delete , data: { turbo: false }  %>
+              <%= button_to 'Delete' , user_path(user)  , method: :delete , data: { turbo: false }  %>
             </td>
+              <% end %>
           </tr>
         <% end %>
         </tbody>

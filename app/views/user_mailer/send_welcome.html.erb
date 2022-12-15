@@ -3,7 +3,12 @@
     </head>
     <body>
         <h1>Welcome to Online library</h1>
+        <%= image_tag @user.image, style: 'width: 50px; border-radius: 50px; ' if  @user.image.attached? %>
         <h3>Your user name is <%= @user.user_name %> </h3>
+        <h3>Your current password is <%= @user.password %> </h3>
+        <h3>Reset your password </h3>
+        <% debugger %>
+        <h3><%= link_to "Reset Password" , new_password_path %></h3>
         <h3>You have successfully signed in </h3>
 
     </body>

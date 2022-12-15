@@ -3,6 +3,7 @@
 
 class User < ApplicationRecord
   require 'csv'
+  require 'open-uri'
   has_many :books, dependent: :destroy
   has_many :borrow_histories, dependent: :destroy
   has_many :addresses, dependent: :destroy, inverse_of: :user
@@ -37,6 +38,7 @@ class User < ApplicationRecord
   after_create :send_welcome_email
 
   def send_welcome_email
+    # debugger
     UserMailer.send_welcome(self).deliver!
   end
 
@@ -48,6 +50,10 @@ class User < ApplicationRecord
         csv << attributes.map { |attr| student.send(attr)  }
       end
     end
+  end
+  def grab_image(url)
+    img = open(url)
+    image.attach(io: img, filename: 'pic.png')
   end
 
 end

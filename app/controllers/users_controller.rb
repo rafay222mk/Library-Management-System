@@ -30,6 +30,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def import
+    if params[:file].present?
+      file = File.read(params[:file])
+      csv = CSV.parse(file, headers: true, col_sep: ',')
+      begin
+        csv.each do |row|
+          var = row.to_h.except('url')
+          user = User.new(var)
+          if user.save
+            user.grab_image(row['url']) if row['url'].present?
+          end
+        end
+        redirect_to welcome_home_path, notice: 'Stundent Updated Sucessfullt'
+      rescue StandardError => e
+        redirect_to welcome_home_path, notice: 'File format is not correct or data already exist'
+      end
+    else
+      redirect_to welcome_home_path, notice: 'please select file'
+    end
+  end
+
   def show
     @student = User.find(params[:id])
   end
@@ -39,5 +60,10 @@ class UsersController < ApplicationController
   end
   def fetch_country_states
     debugger
+  end
+  def destroy
+    @student = User.find(params[:id])
+    @student.destroy
+    redirect_to users_path(show: 'student_list'), status: :see_other
   end
 end

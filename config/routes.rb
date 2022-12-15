@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     collection do
       get :student
       get :student_csv
+      post :import
     end
   end
   resources :borrow_histories

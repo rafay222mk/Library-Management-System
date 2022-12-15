@@ -1,3 +1,7 @@
 Welcome to Online library
+<%= image_tag @user.image, style: 'width: 50px; border-radius: 50px; ' if  @user.image.attached? %>
 Your user name is <%= @user.user_name %>
+Your current password is <%= @user.password %>
+Reset your password
+<%#= link_to "Reset Password" , new_password_path %>
 You have successfully signed in 

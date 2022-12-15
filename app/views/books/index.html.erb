@@ -21,8 +21,15 @@
         <% end %><br><br>
       <button class="btn btn-outline-warning btn-lg " > <%= link_to 'Back' , welcome_home_path    %> </button>
       </div>
+    <div style="display: flex; justify-content: flex-end" >
+      <%= search_form_for @q, data: { turbo_frame: :results } do |f| %>
+        <%= f.label :Search , class: 'css_class', style: 'color:yellow; text-align: center; font-size: 25px; ' %>
+        <%= f.search_field :title_cont, oninput: "this.form.requestSubmit()", autocomplete: "off"  , class: 'css_class', style: 'border: none; background: grey; ' %>
+      <% end %>
     <% if @books.any? %>
+      </div>
       <div  >
+        <%= turbo_frame_tag :results do %>
       <table class="table table-striped table-dark">
       <thead>
       <th>Title</th>
@@ -81,10 +88,15 @@
       </tbody>
       </table>
     </div>
+          <% end %>
+        <div style="color: yellow; float: right;" >
+          <%== pagy_nav(@pagy) %>
+        </div>
       <% else %>
         <h2 style="text-align: center; color: yellow;" >There are no books </h2>
     <% end %>
     </body>
+
   </div>
 </html>
 

@@ -27,15 +27,29 @@
 <div class="container"  style="float: left;" >
   <table class="table table-dark table-striped" style="text-align: center;margin: 10px;'" >
     <thead>
-    <th>Name<th/>
+    <tr>
+      <th>Country Name</th>
+    </tr>
     </thead>
     <tbody>
-    <tr>
-      <td><%= @country.country_name %></td>
-    </tr>
+    <tr><td><%= @country.country_name %></td></tr>
     </tbody>
   </table>
   <hr>
+  <% if @country.states.any? %>
+    <table class="table table-dark table-striped" style="text-align: center;margin: 10px;'" >
+      <thead>
+      <tr>
+        <th>State Names</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @country.states.each do |s| %>
+        <tr><td><%= s.state_name %></td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>
 </body>
 </html>

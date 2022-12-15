@@ -1,6 +1,16 @@
 class CountriesController < ApplicationController
   def index
     @countries = Country.all
+    @q = Country.ransack(params[:q])
+    @pagy, @countries = pagy_countless(@q.result(distinct: true).order(created_at: :asc), items: 4)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        # render pdf: "Countries.pdf", template: "countries/index.html.erb" # Excluding ".pdf" extension.
+        render pdf: "Countries.pdf", template: "countries/index", formats: [:html]
+
+      end
+    end
   end
 
   def edit

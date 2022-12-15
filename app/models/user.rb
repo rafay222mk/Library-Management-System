@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  require 'csv'
   has_many :books, dependent: :destroy
   has_many :borrow_histories, dependent: :destroy
   has_many :addresses, dependent: :destroy, inverse_of: :user
@@ -38,4 +39,15 @@ class User < ApplicationRecord
   def send_welcome_email
     UserMailer.send_welcome(self).deliver!
   end
+
+  def self.to_csv
+    attributes = %w{ id user_name email }
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      all.each do |student|
+        csv << attributes.map { |attr| student.send(attr)  }
+      end
+    end
+  end
+
 end

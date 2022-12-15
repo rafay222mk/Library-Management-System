@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     member do
       get :showbh
     end
+    collection do
+      get :student
+      get :student_csv
+    end
   end
   resources :borrow_histories
   resources :countries

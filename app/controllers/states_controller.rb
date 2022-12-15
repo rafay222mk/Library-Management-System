@@ -4,7 +4,8 @@ class StatesController < ApplicationController
   end
 
   def index
-    @states = State.all
+    @q = State.ransack(params[:q])
+    @pagy, @states = pagy_countless(@q.result(distinct: true).order(created_at: :asc), items: 7)
   end
 
   def edit

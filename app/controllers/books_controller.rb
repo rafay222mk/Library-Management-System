@@ -6,10 +6,8 @@ class BooksController < ApplicationController
   load_and_authorize_resource
   before_action :set_book, only: %i[show edit update]
   def index
-    @books = Book.all
-
-    # @find = Book.find(params[:id])
-    # @bh = @find.borrow_histories
+    @q = Book.ransack(params[:q])
+    @pagy, @books = pagy_countless(@q.result(distinct: true).order(created_at: :asc), items: 4)
   end
 
   def new
@@ -25,7 +23,15 @@ class BooksController < ApplicationController
     end
   end
 
-  def show; end
+  def show;
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #     # render pdf: "Book id: #{@book.id}", template: "books/show.html.erb"   # Excluding ".pdf" extension.
+    #     render pdf: "Book id: #{@book.id}", template: "books/show/pdf", formats: [:html]
+    #   end
+    # end
+  end
 
   def edit; end
 

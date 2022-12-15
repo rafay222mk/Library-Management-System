@@ -82,3 +82,12 @@ gem 'cancancan'
 gem 'cocoon'
 
 gem 'country_select', '~> 6.0'
+
+gem 'ransack'
+
+gem "pagy", "~> 5.10"
+
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+

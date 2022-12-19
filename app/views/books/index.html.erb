@@ -58,7 +58,7 @@
           <td><button class="btn btn-outline-info  " ><%= link_to 'View' , book %></button></td>
           <td>
              <% if current_user.role == "admin" || current_user.role == "libraian" %>
-               <button class="btn btn-outline-info" ><%= link_to 'Edit' , edit_book_path(book) if can? :update, book     %></button> 
+               <button class="btn btn-outline-info" ><%= link_to 'Edit' , edit_book_path(book) if can? :update, book     %></button>
              <% end %>
           </td>
             <% if current_user.role == "admin" || current_user.role == "libraian" %>

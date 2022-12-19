@@ -21,7 +21,7 @@
     <h1 style="color: yellow; text-align: center;" > Welcome <%= current_user.user_name %> </h1>
       <div class="hep" >
         <button class="btn btn-outline-warning btn-lg"><%= link_to 'Edit Profile' , edit_user_registration_path , class: 'css_class', style: 'color:yellow;' %></button>
-      <button class="btn btn-light btn-lg"> <%= link_to 'Personal Information', showbh_user_path(current_user.id) if can? :read, current_user , class: 'css_class', style: 'color:yellow;' %>  </button>  
+      <button class="btn btn-light btn-lg"> <%= link_to 'Personal Information', showbh_user_path(current_user.id) if can? :read, current_user , class: 'css_class', style: 'color:yellow;' %>  </button>
       </div>
       <% if current_user.role == 'admin' %>
         <button class="btn btn-outline-warning btn-lg" ><%= link_to 'Books Lidt' , books_path , class: 'css_class', style: 'color: yellow;' %></button>
@@ -29,20 +29,21 @@
         <button class="btn btn-outline-warning btn-lg"> <%= link_to 'Librarian List' , users_path(show: 'librarian_list') , class: 'css_class', style: 'color:yellow;' %> </button><br><br>
         <button class="btn btn-outline-warning btn-lg"><%= link_to 'Countries' , countries_path , class: 'css_class', style: 'color:yellow;' %></button>
         <button class="btn btn-outline-warning btn-lg"><%= link_to 'States' , states_path , class: 'css_class', style: 'color:yellow;' %></button><br><br>
-        <div class="form"  >
-          <h3>Import Books</h3>
-          <%= form_with url: import_books_path, method: :post do |form| %>
-          <%= form.file_field :file, accept: ".csv" ,class: 'css_class', style: 'color:yellow;'  %> <br><br>
-          <%= form.button "Upload" , class: 'css_class', style: 'color:blue;  font-size: 20px;  ' %>
+        <div class="row" >
+          <div class="form col"  >
+            <h3>Import Books</h3>
+            <%= form_with url: import_books_path, method: :post do |form| %>
+              <%= form.file_field :file, accept: ".csv" ,class: 'css_class', style: 'color:yellow;'  %> <br><br>
+              <%= form.button "Upload" , class: 'css_class', style: 'color:blue;  font-size: 20px;  ' %>
             <% end %>
-        </div>
-
-        <div class="form" style="float: right;" >
-          <h3>Import Students</h3>
-          <%= form_with url: import_users_path, method: :post do |form| %>
-          <%= form.file_field :file, accept: ".csv" ,class: 'css_class', style: 'color:yellow;'  %> <br><br>
-          <%= form.button "Upload" , class: 'css_class', style: 'color:blue;  font-size: 20px;  ' %>
-          <% end %>
+          </div>
+          <div class="form col-4" >
+            <h3>Import Students</h3>
+            <%= form_with url: import_users_path, method: :post do |form| %>
+              <%= form.file_field :file, accept: ".csv" ,class: 'css_class', style: 'color:yellow;'  %> <br><br>
+              <%= form.button "Upload" , class: 'css_class', style: 'color:blue;  font-size: 20px;  ' %>
+            <% end %>
+          </div>
         </div>
         <% elsif current_user.role == 'libraian' %>
         <button class="btn btn-outline-warning btn-lg" ><%= link_to 'Books List' , books_path , class: 'css_class', style: 'color:yellow;' %></button>

@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :addresses, dependent: :destroy, inverse_of: :user
   has_one_attached :image
   accepts_nested_attributes_for :addresses , allow_destroy: true
-  scope :std_list, -> { where(role: 'student') }
-  scope :lib_list, -> { where(role: 'libraian') }
+  scope :std_list, lambda { where(role: 'student') }
+  scope :lib_list, lambda { where(role: 'libraian') }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -23,6 +23,8 @@ class User < ApplicationRecord
   attr_accessor :login
 
   ROLE_LIST = %w[student libraian].freeze
+
+  validates :user_name, presence: true
 
   def login
     @login || email || user_name

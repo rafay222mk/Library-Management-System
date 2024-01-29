@@ -53,6 +53,10 @@
           <td>Profile Picture</td>
           <td><%= image_tag @student.image, style: 'width: 50px; border-radius: 50px;}' if  @student.image.attached? %></td>
         </tr>
+         <tr>
+          <td>Joined</td>
+          <td><%= time_ago_in_words(@student.created_at) %> ago</td>
+        </tr>
         </tbody>
       </table>
       <hr>

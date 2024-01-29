@@ -24,6 +24,7 @@
   <h1 style="text-align: center; color: yellow">Book Detail</h1>
     <br>
     <h2 style="text-align: left"><%= link_to 'Back' , books_path , class: 'css_class', style: 'color:yellow; text-align: center; ' %></h2>
+    <%= link_to 'Download PDF' , books_path(format: :pdf) , class: 'css_class', style: 'color:yellow; ' %>
     <div class="container " , style="float: left;" >
       <table class="table table-dark table-striped" style="text-align: center;margin: 10px;" >
         <thead>

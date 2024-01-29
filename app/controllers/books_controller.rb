@@ -8,6 +8,14 @@ class BooksController < ApplicationController
   def index
     @q = Book.ransack(params[:q])
     @pagy, @books = pagy_countless(@q.result(distinct: true).order(created_at: :asc), items: 4)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        # render pdf: "Countries.pdf", template: "countries/index.html.erb" # Excluding ".pdf" extension.
+        render pdf: "Books.pdf", template: "books/index", formats: [:html]
+
+      end
+    end
   end
 
   def new
@@ -23,7 +31,7 @@ class BooksController < ApplicationController
     end
   end
 
-  def show;
+  def show
     # respond_to do |format|
     #   format.html
     #   format.pdf do
